@@ -1,5 +1,6 @@
 #include <iostream>
 #include <GLFW/glfw3.h>
+#include "presence.h"
 
 #define GLFW_MAJOR_VERSION 3
 #define GLFW_MINOR_VERSION 3
@@ -23,8 +24,12 @@ int main()
     }
     glfwMakeContextCurrent(window);
 
+    presence::discordSetup();
     while (!glfwWindowShouldClose(window))
+    {
         glfwPollEvents();
+        presence::discordTick();
+    }
 
     glfwDestroyWindow(window);
     glfwTerminate();
